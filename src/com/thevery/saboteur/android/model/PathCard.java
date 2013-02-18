@@ -1,5 +1,6 @@
 package com.thevery.saboteur.android.model;
 
+//todo: some card and non-symmetric so we should either ask player to rotate or rotate automatically
 public class PathCard extends Card {
 
     enum Way {

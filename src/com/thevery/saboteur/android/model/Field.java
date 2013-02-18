@@ -21,7 +21,7 @@ public class Field {
     }
 
     //todo: add all needed checks and return true/false
-    public boolean move(Card card, int x, int y) {
+    public boolean action(Card card, int x, int y) {
         SparseArray<Cell> row = area.get(x);
         if (row == null) {
             row = new SparseArray<Cell>();
