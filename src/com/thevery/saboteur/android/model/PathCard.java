@@ -1,0 +1,27 @@
+package com.thevery.saboteur.android.model;
+
+public class PathCard extends Card {
+
+    enum Way {
+        EMPTY,
+        AISLE,
+        DEADLOCK
+    }
+
+    private final Way left;
+    private final Way right;
+    private final Way top;
+    private final Way bottom;
+
+    public PathCard(Way left, Way right, Way top, Way bottom) {
+        this.left = left;
+        this.right = right;
+        this.top = top;
+        this.bottom = bottom;
+    }
+
+    @Override
+    public int getCount() {
+        return 44;
+    }
+}
