@@ -2,13 +2,6 @@ package com.thevery.saboteur.android.model;
 
 import android.util.SparseArray;
 
-/**
- * Created with IntelliJ IDEA.
- * User: thevery
- * Date: 19.02.13
- * Time: 0:08
- * To change this template use File | Settings | File Templates.
- */
 public class Field {
     public static final int MINIMAL_DISTANCE = 7;
 
