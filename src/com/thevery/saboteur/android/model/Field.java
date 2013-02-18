@@ -16,7 +16,7 @@ public class Field {
 
     public Field() {
         SparseArray<Cell> initialArray = new SparseArray<Cell>();
-        initialArray.put(0, new Cell(StartPathCard.START_CARD));
+        initialArray.put(0, new Cell(PathStartCard.START_CARD));
         area.put(0, initialArray);
     }
 

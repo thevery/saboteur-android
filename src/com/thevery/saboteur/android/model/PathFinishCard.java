@@ -1,7 +1,6 @@
 package com.thevery.saboteur.android.model;
 
-public class FinishCard extends Card {
-
+public class PathFinishCard extends Card {
 
     @Override
     public int getCount() {
