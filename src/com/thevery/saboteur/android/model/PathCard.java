@@ -2,6 +2,7 @@ package com.thevery.saboteur.android.model;
 
 //todo: some card and non-symmetric so we should either ask player to rotate or rotate automatically
 public class PathCard extends Card {
+    public static final int TOTAL_CARDS = 44;
 
     enum Way {
         EMPTY,
@@ -19,10 +20,5 @@ public class PathCard extends Card {
         this.right = right;
         this.top = top;
         this.bottom = bottom;
-    }
-
-    @Override
-    public int getCount() {
-        return 44;
     }
 }
