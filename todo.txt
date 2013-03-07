@@ -1,0 +1,2 @@
+set up roboelectric tests and replace Maps to SparseArrays
+probably some CardsFactory or enum
