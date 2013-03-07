@@ -5,7 +5,7 @@ import java.util.List;
 
 public class PathFinishCard extends Card {
     public static final int TOTAL_COUNT = 3;
-    public static final int GOLD_COUNT = 2;
+    public static final int GOLD_COUNT = 1;
 
     private final boolean empty;
     private boolean opened = false;

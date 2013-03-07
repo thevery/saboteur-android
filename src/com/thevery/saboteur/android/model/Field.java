@@ -1,23 +1,32 @@
 package com.thevery.saboteur.android.model;
 
-import android.util.SparseArray;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Field {
     public static final int MINIMAL_DISTANCE = 7;
 
-    private final SparseArray<SparseArray<Cell>> area = new SparseArray<SparseArray<Cell>>();
+    private final Map<Integer, Map<Integer, Cell>> area = new HashMap<Integer, Map<Integer, Cell>>();
 
     public Field() {
-        SparseArray<Cell> initialArray = new SparseArray<Cell>();
-        initialArray.put(0, new Cell(PathStartCard.START_CARD));
-        area.put(0, initialArray);
+        Map<Integer, Cell> startLine = new HashMap<Integer, Cell>();
+        startLine.put(0, new Cell(PathStartCard.START_CARD));
+        Map<Integer,Cell> finishLine = new HashMap<Integer, Cell>();
+        area.put(0, startLine);
+
+        List<Card> finishCards = PathFinishCard.makeCards();
+        finishLine.put(-1, new Cell(finishCards.get(0)));
+        finishLine.put(0, new Cell(finishCards.get(1)));
+        finishLine.put(1, new Cell(finishCards.get(2)));
+        area.put(MINIMAL_DISTANCE + 1, finishLine);
     }
 
     //todo: add all needed checks and return true/false
     public boolean action(Card card, int x, int y) {
-        SparseArray<Cell> row = area.get(x);
+        Map<Integer, Cell> row = area.get(x);
         if (row == null) {
-            row = new SparseArray<Cell>();
+            row = new HashMap<Integer, Cell>();
             area.put(x, row);
         }
         Cell cell = row.get(y);
