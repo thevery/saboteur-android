@@ -5,6 +5,9 @@ import java.util.*;
 import static com.thevery.saboteur.android.model.PathCard.Way.AISLE;
 import static com.thevery.saboteur.android.model.PathCard.Way.DEADLOCK;
 import static com.thevery.saboteur.android.model.PathCard.Way.EMPTY;
+import static com.thevery.saboteur.android.model.Player.Tool.LANTERN;
+import static com.thevery.saboteur.android.model.Player.Tool.PICK;
+import static com.thevery.saboteur.android.model.Player.Tool.TROLLEY;
 
 public class Game {
     private final int playersCount;
@@ -57,6 +60,18 @@ public class Game {
         fill(new PathCard(DEADLOCK, EMPTY, DEADLOCK, EMPTY), 1);
         fill(new PathCard(DEADLOCK, DEADLOCK, EMPTY, DEADLOCK), 1);
         fill(new PathCard(EMPTY, DEADLOCK, EMPTY, DEADLOCK), 1);
+        fill(new ActionBrakeCard(TROLLEY), 3);
+        fill(new ActionBrakeCard(LANTERN), 3);
+        fill(new ActionBrakeCard(PICK), 3);
+        fill(new ActionSpyCard(), 6);
+        fill(new ActionBoomCard(), 3);
+        fill(new ActionSingeRepairCard(TROLLEY), 2);
+        fill(new ActionSingeRepairCard(LANTERN), 2);
+        fill(new ActionSingeRepairCard(PICK), 2);
+        fill(new ActionDoubleRepairCard(PICK, TROLLEY), 1);
+        fill(new ActionDoubleRepairCard(LANTERN, TROLLEY), 1);
+        fill(new ActionDoubleRepairCard(PICK, LANTERN), 1);
+        System.out.println("deck = " + deck.size());
 
         Collections.shuffle(deck);
         return deck;
