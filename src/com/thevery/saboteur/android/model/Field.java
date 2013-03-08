@@ -15,7 +15,7 @@ public class Field {
         Map<Integer,Cell> finishLine = new HashMap<Integer, Cell>();
         area.put(0, startLine);
 
-        List<Card> finishCards = PathFinishCard.makeCards();
+        List<Card> finishCards = PathFinishCard.FINISH_CARDS;
         finishLine.put(-1, new Cell(finishCards.get(0)));
         finishLine.put(0, new Cell(finishCards.get(1)));
         finishLine.put(1, new Cell(finishCards.get(2)));
