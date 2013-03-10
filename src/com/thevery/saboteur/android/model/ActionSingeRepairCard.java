@@ -11,4 +11,9 @@ public class ActionSingeRepairCard extends ActionAbstractRepairCard {
     public Card makeCopy() {
         return new ActionSingeRepairCard(repairedTool);
     }
+
+    @Override
+    public boolean canRepair(Player.Tool tool) {
+        return repairedTool == tool;
+    }
 }

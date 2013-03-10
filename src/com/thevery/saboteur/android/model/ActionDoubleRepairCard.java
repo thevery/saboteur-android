@@ -14,4 +14,9 @@ public class ActionDoubleRepairCard extends ActionAbstractRepairCard {
     public Card makeCopy() {
         return new ActionDoubleRepairCard(repairedTool1, repairedTool2);
     }
+
+    @Override
+    public boolean canRepair(Player.Tool tool) {
+        return repairedTool1 == tool || repairedTool2 == tool;
+    }
 }
