@@ -2,7 +2,7 @@ package com.thevery.saboteur.android.model.cards;
 
 import com.thevery.saboteur.android.model.Player;
 
-public class ActionBrakeCard extends ActionAbstractCard {
+public class ActionBrakeCard extends ActionAbstractPlayerCard {
     private final Player.Tool brokenTool;
 
     public ActionBrakeCard(Player.Tool brokenTool) {
