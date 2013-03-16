@@ -1,4 +1,6 @@
-package com.thevery.saboteur.android.model;
+package com.thevery.saboteur.android.model.cards;
+
+import com.thevery.saboteur.android.model.Player;
 
 public class ActionSingeRepairCard extends ActionAbstractRepairCard {
     private Player.Tool repairedTool;

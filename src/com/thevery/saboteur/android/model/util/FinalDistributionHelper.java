@@ -1,4 +1,4 @@
-package com.thevery.saboteur.android.model;
+package com.thevery.saboteur.android.model.util;
 
 public class FinalDistributionHelper {
     private final int miners;

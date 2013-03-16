@@ -1,5 +1,10 @@
 package com.thevery.saboteur.android.model;
 
+import com.thevery.saboteur.android.model.cards.Card;
+import com.thevery.saboteur.android.model.cards.PathFinishCard;
+import com.thevery.saboteur.android.model.cards.PathStartCard;
+import com.thevery.saboteur.android.model.util.Array2D;
+
 import java.util.List;
 
 public class Field {

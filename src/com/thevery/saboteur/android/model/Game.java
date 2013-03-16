@@ -1,10 +1,13 @@
 package com.thevery.saboteur.android.model;
 
+import com.thevery.saboteur.android.model.cards.*;
+import com.thevery.saboteur.android.model.util.InitialDistributionHelper;
+
 import java.util.*;
 
-import static com.thevery.saboteur.android.model.PathCard.Way.AISLE;
-import static com.thevery.saboteur.android.model.PathCard.Way.DEADLOCK;
-import static com.thevery.saboteur.android.model.PathCard.Way.EMPTY;
+import static com.thevery.saboteur.android.model.cards.PathCard.Way.AISLE;
+import static com.thevery.saboteur.android.model.cards.PathCard.Way.DEADLOCK;
+import static com.thevery.saboteur.android.model.cards.PathCard.Way.EMPTY;
 import static com.thevery.saboteur.android.model.Player.Tool.LANTERN;
 import static com.thevery.saboteur.android.model.Player.Tool.PICK;
 import static com.thevery.saboteur.android.model.Player.Tool.TROLLEY;

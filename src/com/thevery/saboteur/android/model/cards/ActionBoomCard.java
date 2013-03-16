@@ -1,4 +1,4 @@
-package com.thevery.saboteur.android.model;
+package com.thevery.saboteur.android.model.cards;
 
 public class ActionBoomCard extends ActionAbstractCard {
     @Override

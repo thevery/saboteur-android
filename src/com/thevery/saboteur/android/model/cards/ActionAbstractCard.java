@@ -1,4 +1,4 @@
-package com.thevery.saboteur.android.model;
+package com.thevery.saboteur.android.model.cards;
 
 import java.util.ArrayList;
 import java.util.List;

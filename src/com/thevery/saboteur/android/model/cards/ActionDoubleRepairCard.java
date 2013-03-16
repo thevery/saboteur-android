@@ -1,4 +1,6 @@
-package com.thevery.saboteur.android.model;
+package com.thevery.saboteur.android.model.cards;
+
+import com.thevery.saboteur.android.model.Player;
 
 //todo: player must choose one of repair ability in case of 2
 public class ActionDoubleRepairCard extends ActionAbstractRepairCard {

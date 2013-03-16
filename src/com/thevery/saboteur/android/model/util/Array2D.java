@@ -1,4 +1,4 @@
-package com.thevery.saboteur.android.model;
+package com.thevery.saboteur.android.model.util;
 
 import java.util.HashMap;
 import java.util.Map;

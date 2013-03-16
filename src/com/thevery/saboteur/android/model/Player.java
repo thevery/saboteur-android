@@ -17,7 +17,7 @@ public class Player {
         return brokenTools.remove(tool);
     }
 
-    static enum Tool {
+    public static enum Tool {
         PICK,
         LANTERN,
         TROLLEY
