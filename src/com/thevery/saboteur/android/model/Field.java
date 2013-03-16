@@ -1,41 +1,31 @@
 package com.thevery.saboteur.android.model;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Field {
     public static final int MINIMAL_DISTANCE = 7;
 
-    private final Map<Integer, Map<Integer, Cell>> area = new HashMap<Integer, Map<Integer, Cell>>();
+    private final Array2D<Cell> area = new Array2D<Cell>();
 
     public Field() {
-        Map<Integer, Cell> startLine = new HashMap<Integer, Cell>();
-        startLine.put(0, new Cell(PathStartCard.START_CARD));
-        Map<Integer,Cell> finishLine = new HashMap<Integer, Cell>();
-        area.put(0, startLine);
-
+        area.put(0, 0, new Cell(PathStartCard.START_CARD));
         List<Card> finishCards = PathFinishCard.FINISH_CARDS;
-        finishLine.put(-1, new Cell(finishCards.get(0)));
-        finishLine.put(0, new Cell(finishCards.get(1)));
-        finishLine.put(1, new Cell(finishCards.get(2)));
-        area.put(MINIMAL_DISTANCE + 1, finishLine);
+        area.put(MINIMAL_DISTANCE + 1, -1, new Cell(finishCards.get(0)));
+        area.put(MINIMAL_DISTANCE + 1, 0, new Cell(finishCards.get(1)));
+        area.put(MINIMAL_DISTANCE + 1, 1, new Cell(finishCards.get(2)));
     }
 
-    //todo: add all needed checks and return true/false
-    public boolean action(Card card, int x, int y) {
-        Map<Integer, Cell> row = area.get(x);
-        if (row == null) {
-            row = new HashMap<Integer, Cell>();
-            area.put(x, row);
-        }
-        Cell cell = row.get(y);
-        if (cell == null) {
-            cell = new Cell(card);
-            row.put(y, cell);
-        }
+    public boolean checkTurn(Card card, int x, int y) {
+        //todo: add all needed checks and return true/false
+
+        return false;
+    }
+
+
+    //todo: special case for spy card
+    public void turn(Card card, int x, int y) {
+        Cell cell = area.get(x, y, new Cell(card));
         cell.setCurrentCard(card);
-        return true;
     }
 
 
