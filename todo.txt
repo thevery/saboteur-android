@@ -1,2 +1,3 @@
 set up roboelectric tests and replace Maps to SparseArrays
 probably some CardsFactory or enum
+probably make card and turn not classes but interfaces
