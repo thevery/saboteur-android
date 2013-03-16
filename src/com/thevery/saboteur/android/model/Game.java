@@ -13,14 +13,14 @@ public class Game {
     private final int playersCount;
     private final Field field;
     private final Map<Integer, List<Card>> playerCards;
-    private final Stack<Card> deck = new Stack<Card>();
+    private final Stack<Card> deck;
 
     public Game(int playersCount) {
         this.playersCount = playersCount;
         field = new Field();
         playerCards = new HashMap<Integer, List<Card>>(playersCount);
+        deck = makeInitialDeck();
         InitialDistributionHelper helper = new InitialDistributionHelper(playersCount);
-        fillDeck();
         int cardsCountPerPlayer = helper.getCardsCountPerPlayer();
         for (int i = 0; i < cardsCountPerPlayer; i++) {
             for (int j = 0; j < playersCount; j++) {
@@ -42,44 +42,49 @@ public class Game {
     }
 
     //http://cf.geekdo-images.com/images/pic180040_md.jpg
-    private Stack<Card> fillDeck() {
-        if (!deck.empty()) throw new IllegalStateException("cannot fill one deck twice!");
-        fill(new PathCard(AISLE, EMPTY, AISLE, EMPTY), 4);
-        fill(new PathCard(AISLE, AISLE, AISLE, EMPTY), 5);
-        fill(new PathCard(AISLE, AISLE, AISLE, AISLE), 5);
-        fill(new PathCard(EMPTY, AISLE, AISLE, EMPTY), 4);
-        fill(new PathCard(EMPTY, EMPTY, AISLE, AISLE), 5);
-        fill(new PathCard(EMPTY, EMPTY, DEADLOCK, EMPTY), 1);
-        fill(new PathCard(DEADLOCK, EMPTY, DEADLOCK, DEADLOCK), 1);
-        fill(new PathCard(DEADLOCK, DEADLOCK, DEADLOCK, DEADLOCK), 1);
-        fill(new PathCard(EMPTY, DEADLOCK, DEADLOCK, EMPTY), 1);
-        fill(new PathCard(EMPTY, EMPTY, DEADLOCK, DEADLOCK), 1);
-        fill(new PathCard(EMPTY, EMPTY, EMPTY, DEADLOCK), 1);
-        fill(new PathCard(AISLE, AISLE, EMPTY, AISLE), 5);
-        fill(new PathCard(EMPTY, AISLE, EMPTY, AISLE), 3);
-        fill(new PathCard(DEADLOCK, EMPTY, DEADLOCK, EMPTY), 1);
-        fill(new PathCard(DEADLOCK, DEADLOCK, EMPTY, DEADLOCK), 1);
-        fill(new PathCard(EMPTY, DEADLOCK, EMPTY, DEADLOCK), 1);
-        fill(new ActionBrakeCard(TROLLEY), 3);
-        fill(new ActionBrakeCard(LANTERN), 3);
-        fill(new ActionBrakeCard(PICK), 3);
-        fill(new ActionSpyCard(), 6);
-        fill(new ActionBoomCard(), 3);
-        fill(new ActionSingeRepairCard(TROLLEY), 2);
-        fill(new ActionSingeRepairCard(LANTERN), 2);
-        fill(new ActionSingeRepairCard(PICK), 2);
-        fill(new ActionDoubleRepairCard(PICK, TROLLEY), 1);
-        fill(new ActionDoubleRepairCard(LANTERN, TROLLEY), 1);
-        fill(new ActionDoubleRepairCard(PICK, LANTERN), 1);
-        System.out.println("deck = " + deck.size());
-
+    private Stack<Card> makeInitialDeck() {
+        FillStack deck = new FillStack();
+        deck.fill(new PathCard(AISLE, EMPTY, AISLE, EMPTY), 4);
+        deck.fill(new PathCard(AISLE, AISLE, AISLE, EMPTY), 5);
+        deck.fill(new PathCard(AISLE, AISLE, AISLE, AISLE), 5);
+        deck.fill(new PathCard(EMPTY, AISLE, AISLE, EMPTY), 4);
+        deck.fill(new PathCard(EMPTY, EMPTY, AISLE, AISLE), 5);
+        deck.fill(new PathCard(EMPTY, EMPTY, DEADLOCK, EMPTY), 1);
+        deck.fill(new PathCard(DEADLOCK, EMPTY, DEADLOCK, DEADLOCK), 1);
+        deck.fill(new PathCard(DEADLOCK, DEADLOCK, DEADLOCK, DEADLOCK), 1);
+        deck.fill(new PathCard(EMPTY, DEADLOCK, DEADLOCK, EMPTY), 1);
+        deck.fill(new PathCard(EMPTY, EMPTY, DEADLOCK, DEADLOCK), 1);
+        deck.fill(new PathCard(EMPTY, EMPTY, EMPTY, DEADLOCK), 1);
+        deck.fill(new PathCard(AISLE, AISLE, EMPTY, AISLE), 5);
+        deck.fill(new PathCard(EMPTY, AISLE, EMPTY, AISLE), 3);
+        deck.fill(new PathCard(DEADLOCK, EMPTY, DEADLOCK, EMPTY), 1);
+        deck.fill(new PathCard(DEADLOCK, DEADLOCK, EMPTY, DEADLOCK), 1);
+        deck.fill(new PathCard(EMPTY, DEADLOCK, EMPTY, DEADLOCK), 1);
+        deck.fill(new ActionBrakeCard(TROLLEY), 3);
+        deck.fill(new ActionBrakeCard(LANTERN), 3);
+        deck.fill(new ActionBrakeCard(PICK), 3);
+        deck.fill(new ActionSpyCard(), 6);
+        deck.fill(new ActionBoomCard(), 3);
+        deck.fill(new ActionSingeRepairCard(TROLLEY), 2);
+        deck.fill(new ActionSingeRepairCard(LANTERN), 2);
+        deck.fill(new ActionSingeRepairCard(PICK), 2);
+        deck.fill(new ActionDoubleRepairCard(PICK, TROLLEY), 1);
+        deck.fill(new ActionDoubleRepairCard(LANTERN, TROLLEY), 1);
+        deck.fill(new ActionDoubleRepairCard(PICK, LANTERN), 1);
         Collections.shuffle(deck);
         return deck;
     }
 
-    private void fill(Card card, int count) {
-        for (int i = 0; i < count; i++) {
-            deck.add(card.makeCopy());
+    public Field getField() {
+        return field;
+    }
+
+    private static class FillStack extends Stack<Card> {
+        public void fill(Card card, int count) {
+            for (int i = 0; i < count; i++) {
+                add(card.makeCopy());
+            }
         }
     }
+
 }
