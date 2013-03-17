@@ -82,6 +82,10 @@ public class Game {
         return field;
     }
 
+    public Stack<Card> getDeck() {
+        return deck;
+    }
+
     private static class FillStack extends Stack<Card> {
         public void fill(Card card, int count) {
             for (int i = 0; i < count; i++) {

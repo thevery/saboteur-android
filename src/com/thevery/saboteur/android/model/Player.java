@@ -35,6 +35,14 @@ public class Player {
         //todo: spy, repair or break
     }
 
+    public void addCard(Card card) {
+        cards.add(card);
+    }
+
+    public boolean hasCards() {
+        return cards.isEmpty();
+    }
+
     public static enum Tool {
         PICK,
         LANTERN,
