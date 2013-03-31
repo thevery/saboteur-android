@@ -16,19 +16,23 @@ public class Game {
     private final int playersCount;
     private final Field field;
     private final Map<Integer, List<Card>> playerCards;
+    private final Map<Integer, Player.Role> playerRoles;
     private final Stack<Card> deck;
 
     public Game(int playersCount) {
         this.playersCount = playersCount;
         field = new Field();
         playerCards = new HashMap<Integer, List<Card>>(playersCount);
+        playerRoles = new HashMap<Integer, Player.Role>();
         deck = makeInitialDeck();
         InitialDistributionHelper helper = new InitialDistributionHelper(playersCount);
+        List<Player.Role> roles = makeRoles(helper.getSaboteursCount());
         int cardsCountPerPlayer = helper.getCardsCountPerPlayer();
         for (int i = 0; i < cardsCountPerPlayer; i++) {
             for (int j = 0; j < playersCount; j++) {
                 if (!playerCards.containsKey(j)) {
                     playerCards.put(j, new ArrayList<Card>(cardsCountPerPlayer));
+                    playerRoles.put(j, roles.get(j));
                 }
                 List<Card> cards = playerCards.get(j);
                 cards.add(deck.pop());
@@ -36,8 +40,24 @@ public class Game {
         }
     }
 
+    public List<Player.Role> makeRoles(int saboteursCount) {
+        List<Player.Role> roles = new ArrayList<Player.Role>(playersCount);
+        for (int i = saboteursCount; i < playersCount; i++) {
+            roles.add(Player.Role.DWARF);
+        }
+        for (int i = 0; i < saboteursCount; i++) {
+            roles.add(Player.Role.SABOTEUR);
+        }
+        Collections.shuffle(roles);
+        return roles;
+    }
+
     public List<Card> getCardsForPlayer(int playerNumber) {
         return playerCards.get(playerNumber);
+    }
+
+    public Player.Role getRoleForPlayer(int playerNumber) {
+        return playerRoles.get(playerNumber);
     }
 
     public boolean isFinished() {
@@ -68,12 +88,12 @@ public class Game {
         deck.fill(new ActionBrakeCard(PICK), 3);
         deck.fill(new ActionSpyCard(), 6);
         deck.fill(new ActionBoomCard(), 3);
-        deck.fill(new ActionSingeRepairCard(TROLLEY), 2);
-        deck.fill(new ActionSingeRepairCard(LANTERN), 2);
-        deck.fill(new ActionSingeRepairCard(PICK), 2);
-        deck.fill(new ActionDoubleRepairCard(PICK, TROLLEY), 1);
-        deck.fill(new ActionDoubleRepairCard(LANTERN, TROLLEY), 1);
-        deck.fill(new ActionDoubleRepairCard(PICK, LANTERN), 1);
+        deck.fill(new ActionRepairCard(TROLLEY), 2);
+        deck.fill(new ActionRepairCard(LANTERN), 2);
+        deck.fill(new ActionRepairCard(PICK), 2);
+        deck.fill(new ActionRepairCard(PICK, TROLLEY), 1);
+        deck.fill(new ActionRepairCard(LANTERN, TROLLEY), 1);
+        deck.fill(new ActionRepairCard(PICK, LANTERN), 1);
         Collections.shuffle(deck);
         return deck;
     }

@@ -22,7 +22,7 @@ public class MainTest {
 
         for (int i = 0; i < PLAYERS_COUNT; i++) {
             List<Card> cards = game.getCardsForPlayer(i);
-            Player player = new Player();
+            Player player = new Player(game.getRoleForPlayer(i));
             player.setCards(cards);
             players.add(player);
         }

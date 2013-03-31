@@ -1,7 +1,7 @@
 package com.thevery.saboteur.android.model;
 
-import com.thevery.saboteur.android.model.cards.ActionAbstractPlayerCard;
-import com.thevery.saboteur.android.model.cards.Card;
+import com.thevery.saboteur.android.model.cards.*;
+import com.thevery.saboteur.android.model.turn.SkipTurn;
 import com.thevery.saboteur.android.model.turn.Turn;
 
 import java.util.HashSet;
@@ -11,8 +11,10 @@ import java.util.Set;
 public class Player {
     private final Set<Tool> brokenTools = new HashSet<Tool>();
     private List<Card> cards;
+    private Role role;
 
-    public Player() {
+    public Player(Role role) {
+        this.role = role;
     }
 
     public boolean breakTool(Tool tool) {
@@ -28,11 +30,19 @@ public class Player {
     }
 
     public Turn makeTurn() {
-        return null;
+        return new SkipTurn(cards.get(0));
     }
 
     public void takeTurn(ActionAbstractPlayerCard card) {
-        //todo: spy, repair or break
+        if (card instanceof ActionRepairCard) {
+            ActionRepairCard repairCard = (ActionRepairCard) card;
+            brokenTools.remove(repairCard.getRepairedTool());
+        } else if (card instanceof ActionBrakeCard) {
+            ActionBrakeCard brakeCard = (ActionBrakeCard) card;
+            brokenTools.add(brakeCard.getBrokenTool());
+        } else if (card instanceof ActionSpyCard) {
+//            return Role;
+        }
     }
 
     public void addCard(Card card) {
@@ -47,5 +57,10 @@ public class Player {
         PICK,
         LANTERN,
         TROLLEY
+    }
+
+    public static enum Role {
+        DWARF,
+        SABOTEUR
     }
 }

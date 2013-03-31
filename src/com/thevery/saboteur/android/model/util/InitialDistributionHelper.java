@@ -15,4 +15,11 @@ public class InitialDistributionHelper {
         if (players >= 7) return 5;
         return 4;
     }
+
+    public int getSaboteursCount() {
+        if (players <= 4) return 1;
+        if (players <= 6) return 2;
+        if (players <= 9) return 3;
+        return 0;
+    }
 }
