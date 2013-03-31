@@ -30,19 +30,12 @@ public class Player {
     }
 
     public Turn makeTurn() {
+        //todo
         return new SkipTurn(cards.get(0));
     }
 
-    public void takeTurn(ActionAbstractPlayerCard card) {
-        if (card instanceof ActionRepairCard) {
-            ActionRepairCard repairCard = (ActionRepairCard) card;
-            brokenTools.remove(repairCard.getRepairedTool());
-        } else if (card instanceof ActionBrakeCard) {
-            ActionBrakeCard brakeCard = (ActionBrakeCard) card;
-            brokenTools.add(brakeCard.getBrokenTool());
-        } else if (card instanceof ActionSpyCard) {
-//            return Role;
-        }
+    public Role getRole(ActionSpyCard card) {
+        return role;
     }
 
     public void addCard(Card card) {

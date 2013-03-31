@@ -1,7 +1,7 @@
 package com.thevery.saboteur.android;
 
 import com.thevery.saboteur.android.model.*;
-import com.thevery.saboteur.android.model.cards.Card;
+import com.thevery.saboteur.android.model.cards.*;
 import com.thevery.saboteur.android.model.turn.FieldTurn;
 import com.thevery.saboteur.android.model.turn.PlayerTurn;
 import com.thevery.saboteur.android.model.turn.SkipTurn;
@@ -38,11 +38,23 @@ public class MainTest {
                 } else if (turn instanceof PlayerTurn) {
                     PlayerTurn playerTurn = (PlayerTurn) turn;
                     Player player = playerTurn.getPlayer();
-                    player.takeTurn(playerTurn.getCard());
+                    ActionAbstractPlayerCard card = playerTurn.getCard();
+                    if (card instanceof ActionRepairCard) {
+                        ActionRepairCard repairCard = (ActionRepairCard) card;
+                        player.repairTool(repairCard.getRepairedTool());
+                    } else if (card instanceof ActionBrakeCard) {
+                        ActionBrakeCard brakeCard = (ActionBrakeCard) card;
+                        player.breakTool(brakeCard.getBrokenTool());
+                    } else if (card instanceof ActionSpyCard) {
+                        //todo
+                        Player.Role role = player.getRole((ActionSpyCard) card);
+                    }
                 } else if (turn instanceof SkipTurn) {
                     //does nothing
                 }
-                if (!deck.empty()) currentPlayer.addCard(deck.pop());
+                if (!deck.empty()) {
+                    currentPlayer.addCard(deck.pop());
+                }
             } else {
                 //todo: check if games is finished
             }
