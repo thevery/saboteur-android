@@ -6,17 +6,12 @@ import com.thevery.saboteur.android.model.cards.PlayerTurnCard;
 /**
  * Some turn that goes on some player, i.e. brake, repair or spy
  */
-public class PlayerTurn extends Turn {
-    private PlayerTurnCard card;
+public class PlayerTurn extends Turn<PlayerTurnCard> {
     private Player player;
 
     public PlayerTurn(PlayerTurnCard card, Player player) {
-        this.card = card;
+        super(card);
         this.player = player;
-    }
-
-    public PlayerTurnCard getCard() {
-        return card;
     }
 
     public Player getPlayer() {
@@ -25,6 +20,6 @@ public class PlayerTurn extends Turn {
 
     @Override
     public String toString() {
-        return "card '" + card + "' to player '" + player + "";
+        return "card '" + getCard() + "' to player '" + player + "";
     }
 }

@@ -1,24 +1,18 @@
 package com.thevery.saboteur.android.model.turn;
 
-import com.thevery.saboteur.android.model.cards.Card;
 import com.thevery.saboteur.android.model.cards.FieldTurnCard;
 
 /**
  * Some turn that goes on field, i.e. path or boom
  */
-public class FieldTurn extends Turn {
-    private FieldTurnCard card;
+public class FieldTurn extends Turn<FieldTurnCard> {
     private int x;
     private int y;
 
     public FieldTurn(FieldTurnCard card, int x, int y) {
-        this.card = card;
+        super(card);
         this.x = x;
         this.y = y;
-    }
-
-    public Card getCard() {
-        return card;
     }
 
     public int getX() {
@@ -31,6 +25,6 @@ public class FieldTurn extends Turn {
 
     @Override
     public String toString() {
-        return "card '" + card + "' to x=" + x + ", y=" + y;
+        return "card '" + getCard() + "' to x=" + getX() + ", y=" + getY();
     }
 }
