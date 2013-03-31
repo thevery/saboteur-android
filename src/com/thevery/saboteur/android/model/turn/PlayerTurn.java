@@ -22,4 +22,9 @@ public class PlayerTurn extends Turn {
     public Player getPlayer() {
         return player;
     }
+
+    @Override
+    public String toString() {
+        return "card '" + card + "' to player '" + player + "";
+    }
 }

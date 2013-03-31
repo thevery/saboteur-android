@@ -8,4 +8,9 @@ public class SkipTurn extends Turn {
     public SkipTurn(Card card) {
         this.card = card;
     }
+
+    @Override
+    public String toString() {
+        return "card '" + card + "' skipped";
+    }
 }

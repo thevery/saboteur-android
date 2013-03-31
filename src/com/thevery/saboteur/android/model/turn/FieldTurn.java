@@ -27,4 +27,9 @@ public class FieldTurn extends Turn {
     public int getY() {
         return y;
     }
+
+    @Override
+    public String toString() {
+        return "card '" + card + "' to x=" + x + ", y=" + y;
+    }
 }
