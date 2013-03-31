@@ -2,10 +2,10 @@ package com.thevery.saboteur.android.model.cards;
 
 import com.thevery.saboteur.android.model.Player;
 
-public class ActionBrakeTurnCard implements PlayerTurnCard {
+public class BrakeCard implements PlayerTurnCard {
     private final Player.Tool brokenTool;
 
-    public ActionBrakeTurnCard(Player.Tool brokenTool) {
+    public BrakeCard(Player.Tool brokenTool) {
         this.brokenTool = brokenTool;
     }
 
@@ -15,6 +15,6 @@ public class ActionBrakeTurnCard implements PlayerTurnCard {
 
     @Override
     public Card makeCopy() {
-        return new ActionBrakeTurnCard(brokenTool);
+        return new BrakeCard(brokenTool);
     }
 }

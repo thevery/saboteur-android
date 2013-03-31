@@ -83,17 +83,17 @@ public class Game {
         deck.fill(new PathCard(DEADLOCK, EMPTY, DEADLOCK, EMPTY), 1);
         deck.fill(new PathCard(DEADLOCK, DEADLOCK, EMPTY, DEADLOCK), 1);
         deck.fill(new PathCard(EMPTY, DEADLOCK, EMPTY, DEADLOCK), 1);
-        deck.fill(new ActionBrakeTurnCard(TROLLEY), 3);
-        deck.fill(new ActionBrakeTurnCard(LANTERN), 3);
-        deck.fill(new ActionBrakeTurnCard(PICK), 3);
-        deck.fill(new ActionSpyTurnCard(), 6);
-        deck.fill(new ActionBoomCard(), 3);
-        deck.fill(new ActionRepairTurnCard(TROLLEY), 2);
-        deck.fill(new ActionRepairTurnCard(LANTERN), 2);
-        deck.fill(new ActionRepairTurnCard(PICK), 2);
-        deck.fill(new ActionRepairTurnCard(PICK, TROLLEY), 1);
-        deck.fill(new ActionRepairTurnCard(LANTERN, TROLLEY), 1);
-        deck.fill(new ActionRepairTurnCard(PICK, LANTERN), 1);
+        deck.fill(new BrakeCard(TROLLEY), 3);
+        deck.fill(new BrakeCard(LANTERN), 3);
+        deck.fill(new BrakeCard(PICK), 3);
+        deck.fill(new SpyCard(), 6);
+        deck.fill(new BoomCard(), 3);
+        deck.fill(new RepairCard(TROLLEY), 2);
+        deck.fill(new RepairCard(LANTERN), 2);
+        deck.fill(new RepairCard(PICK), 2);
+        deck.fill(new RepairCard(PICK, TROLLEY), 1);
+        deck.fill(new RepairCard(LANTERN, TROLLEY), 1);
+        deck.fill(new RepairCard(PICK, LANTERN), 1);
         Collections.shuffle(deck);
         return deck;
     }

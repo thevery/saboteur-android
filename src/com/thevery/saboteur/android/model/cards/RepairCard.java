@@ -5,11 +5,11 @@ import com.thevery.saboteur.android.model.Player;
 import java.util.Arrays;
 import java.util.List;
 
-public class ActionRepairTurnCard implements PlayerTurnCard {
+public class RepairCard implements PlayerTurnCard {
     private List<Player.Tool> repairedTools;
     private Player.Tool repairedTool;
 
-    public ActionRepairTurnCard(Player.Tool... repairedTools) {
+    public RepairCard(Player.Tool... repairedTools) {
         this.repairedTools = Arrays.asList(repairedTools);
         if (repairedTools.length == 1) {
             repairedTool = repairedTools[0];
@@ -31,6 +31,6 @@ public class ActionRepairTurnCard implements PlayerTurnCard {
 
     @Override
     public Card makeCopy() {
-        return new ActionRepairTurnCard(repairedTools.toArray(new Player.Tool[repairedTools.size()]));
+        return new RepairCard(repairedTools.toArray(new Player.Tool[repairedTools.size()]));
     }
 }

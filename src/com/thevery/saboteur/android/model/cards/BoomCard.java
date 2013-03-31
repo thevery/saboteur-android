@@ -1,8 +1,8 @@
 package com.thevery.saboteur.android.model.cards;
 
-public class ActionBoomCard implements FieldTurnCard {
+public class BoomCard implements FieldTurnCard {
     @Override
     public Card makeCopy() {
-        return new ActionBoomCard();
+        return new BoomCard();
     }
 }

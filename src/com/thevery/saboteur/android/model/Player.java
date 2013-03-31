@@ -34,7 +34,7 @@ public class Player {
         return new SkipTurn(cards.get(0));
     }
 
-    public Role getRole(ActionSpyTurnCard card) {
+    public Role getRole(SpyCard card) {
         return role;
     }
 
