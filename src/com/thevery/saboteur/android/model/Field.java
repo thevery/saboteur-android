@@ -1,8 +1,6 @@
 package com.thevery.saboteur.android.model;
 
-import com.thevery.saboteur.android.model.cards.Card;
-import com.thevery.saboteur.android.model.cards.PathFinishCard;
-import com.thevery.saboteur.android.model.cards.PathStartCard;
+import com.thevery.saboteur.android.model.cards.*;
 import com.thevery.saboteur.android.model.util.Array2D;
 
 import java.util.List;
@@ -20,29 +18,51 @@ public class Field {
         area.put(MINIMAL_DISTANCE + 1, 1, new Cell(finishCards.get(2)));
     }
 
-    public boolean checkTurn(Card card, int x, int y) {
-        //todo: add all needed checks and return true/false
-
-        return false;
+    public boolean checkTurn(FieldTurnCard card, int x, int y) {
+        Cell cell = area.get(x, y, new Cell());
+        Card currentCard = cell.getCurrentCard();
+        if (card instanceof BoomCard) {
+            //you cannot boom empty, start or end card
+            return currentCard != null && !(currentCard instanceof PathFinishCard) && !(currentCard instanceof PathStartCard);
+        } else if (card instanceof PathCard) {
+            //todo: for path check 1) is empty 2) have full path neighbours 3) matches neighbours
+            return false;
+        } else {
+            throw new IllegalArgumentException("unknown card: " + card);
+        }
     }
 
 
-    //todo: special case for spy card
-    public void turn(Card card, int x, int y) {
+    public void turn(FieldTurnCard card, int x, int y) {
+        if (!checkTurn(card, x, y)) {
+            //todo: maybe just return false
+            throw new IllegalArgumentException("you cannot make such move!");
+        }
         Cell cell = area.get(x, y, new Cell(card));
-        cell.setCurrentCard(card);
+        if (card instanceof PathCard) {
+            cell.setCurrentCard(card);
+        } else if (card instanceof BoomCard) {
+            //todo: maybe remove, not null?
+            //todo: maybe make cell = null;
+            cell.setCurrentCard(null);
+        } else {
+            throw new IllegalStateException("card must be either path or boom");
+        }
     }
 
 
     private static class Cell {
         private Card currentCard;
 
+        private Cell() {
+        }
+
         public Cell(Card startCard) {
-            currentCard = startCard;
+            setCurrentCard(startCard);
         }
 
         public void removeCurrentCard() {
-            currentCard = null;
+            setCurrentCard(null);
         }
 
         public Card getCurrentCard() {
