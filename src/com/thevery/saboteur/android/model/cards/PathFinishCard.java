@@ -3,7 +3,7 @@ package com.thevery.saboteur.android.model.cards;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PathFinishCard extends Card {
+public class PathFinishCard implements Card {
     public static final int TOTAL_COUNT = 3;
     public static final int GOLD_COUNT = 1;
 

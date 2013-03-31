@@ -1,16 +1,17 @@
 package com.thevery.saboteur.android.model.turn;
 
 import com.thevery.saboteur.android.model.cards.Card;
+import com.thevery.saboteur.android.model.cards.FieldTurnCard;
 
 /**
  * Some turn that goes on field, i.e. path or boom
  */
 public class FieldTurn extends Turn {
-    private Card card;//todo: probably more specific
+    private FieldTurnCard card;
     private int x;
     private int y;
 
-    public FieldTurn(Card card, int x, int y) {
+    public FieldTurn(FieldTurnCard card, int x, int y) {
         this.card = card;
         this.x = x;
         this.y = y;

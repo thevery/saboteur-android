@@ -38,16 +38,16 @@ public class MainTest {
                 } else if (turn instanceof PlayerTurn) {
                     PlayerTurn playerTurn = (PlayerTurn) turn;
                     Player player = playerTurn.getPlayer();
-                    ActionAbstractPlayerCard card = playerTurn.getCard();
-                    if (card instanceof ActionRepairCard) {
-                        ActionRepairCard repairCard = (ActionRepairCard) card;
+                    PlayerTurnCard card = playerTurn.getCard();
+                    if (card instanceof ActionRepairTurnCard) {
+                        ActionRepairTurnCard repairCard = (ActionRepairTurnCard) card;
                         player.repairTool(repairCard.getRepairedTool());
-                    } else if (card instanceof ActionBrakeCard) {
-                        ActionBrakeCard brakeCard = (ActionBrakeCard) card;
+                    } else if (card instanceof ActionBrakeTurnCard) {
+                        ActionBrakeTurnCard brakeCard = (ActionBrakeTurnCard) card;
                         player.breakTool(brakeCard.getBrokenTool());
-                    } else if (card instanceof ActionSpyCard) {
+                    } else if (card instanceof ActionSpyTurnCard) {
                         //todo
-                        Player.Role role = player.getRole((ActionSpyCard) card);
+                        Player.Role role = player.getRole((ActionSpyTurnCard) card);
                     }
                 } else if (turn instanceof SkipTurn) {
                     //does nothing

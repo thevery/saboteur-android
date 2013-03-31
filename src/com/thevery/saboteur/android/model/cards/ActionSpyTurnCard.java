@@ -1,8 +1,8 @@
 package com.thevery.saboteur.android.model.cards;
 
-public class ActionSpyCard extends ActionAbstractPlayerCard {
+public class ActionSpyTurnCard implements PlayerTurnCard {
     @Override
     public Card makeCopy() {
-        return new ActionSpyCard();
+        return new ActionSpyTurnCard();
     }
 }

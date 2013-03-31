@@ -1,6 +1,6 @@
 package com.thevery.saboteur.android.model.cards;
 
-public abstract class Card {
+public interface Card {
     //todo: use cloneable?
-    public abstract Card makeCopy();
+    public Card makeCopy();
 }

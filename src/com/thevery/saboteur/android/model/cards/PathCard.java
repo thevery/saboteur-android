@@ -1,7 +1,7 @@
 package com.thevery.saboteur.android.model.cards;
 
 //todo: some card and non-symmetric so we should either ask player to rotate or rotate automatically
-public class PathCard extends Card {
+public class PathCard implements FieldTurnCard {
     private final Way top;
     private final Way right;
     private final Way bottom;

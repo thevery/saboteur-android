@@ -1,21 +1,21 @@
 package com.thevery.saboteur.android.model.turn;
 
 import com.thevery.saboteur.android.model.Player;
-import com.thevery.saboteur.android.model.cards.ActionAbstractPlayerCard;
+import com.thevery.saboteur.android.model.cards.PlayerTurnCard;
 
 /**
  * Some turn that goes on some player, i.e. brake, repair or spy
  */
 public class PlayerTurn extends Turn {
-    private ActionAbstractPlayerCard card;
+    private PlayerTurnCard card;
     private Player player;
 
-    public PlayerTurn(ActionAbstractPlayerCard card, Player player) {
+    public PlayerTurn(PlayerTurnCard card, Player player) {
         this.card = card;
         this.player = player;
     }
 
-    public ActionAbstractPlayerCard getCard() {
+    public PlayerTurnCard getCard() {
         return card;
     }
 
